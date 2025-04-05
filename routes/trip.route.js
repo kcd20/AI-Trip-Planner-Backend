@@ -14,6 +14,7 @@ router.post('/generate', async (req, res) => {
         const genAI = new GoogleGenerativeAI(process.env.GEMINI);
         const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" })
         
+        console.log(prompt)
         const result = await model.generateContent(prompt)
         const response = result.response
         res.status(200).json(response.text())
