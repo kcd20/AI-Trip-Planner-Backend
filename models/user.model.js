@@ -21,10 +21,6 @@ const userSchema = new Schema(
     img: {
       type: String,
     },
-    savedTrips: {
-      type: [String],
-      default: [],
-    },
   },
   { timestamps: true }
 );

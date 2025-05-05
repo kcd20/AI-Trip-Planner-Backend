@@ -1,27 +1,46 @@
-import { Schema } from "mongoose"
-import mongoose from "mongoose"
+import { Schema } from "mongoose";
+import mongoose from "mongoose";
 
 const tripSchema = new Schema(
-{
+  {
     user: {
-        type: Schema.Types.ObjectId, 
-        ref: "User", 
-        required: true,
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
-    img: {
-        type: String,
+    id: {
+      type: String,
+      required: true,
+      unique: true,
     },
-    title: {
-        type: String,
-        required: true,
+    createdOn: {
+      type: String,
+      required: true,
     },
-    slug: {
-        type: String,
-        required: true,
-        unique: true
+    destinations: {
+      type: [String],
+      required: true,
     },
-}, { 
-    timestamps: true 
-});
+    lengthOfTrip: {
+      type: String,
+      required: true,
+    },
+    arrivalAirport: {
+      type: String,
+    },
+    departureAirport: {
+      type: String,
+    },
+    timeOfArrival: {
+      type: String,
+    },
+    timeOfDeparture: {
+      type: String,
+    },
+    tripDetails: {
+      type: String,
+    },
+  },
+);
 
 export default mongoose.model("Trip", tripSchema);
