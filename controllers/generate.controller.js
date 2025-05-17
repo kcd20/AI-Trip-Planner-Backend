@@ -13,13 +13,13 @@ export const postGenerateTrip = async (req, res) => {
     timeOfDeparture,
   } = req.body;
 
-  const prompt = `Create a travel itinerary for Japan based on the following details: Destination(s): ${destinations.join(
-    ","
-  )}, Length of Trip: ${lengthOfTrip} day(s), ${
-    arrivalAirport && `Arrival Airport: ${arrivalAirport},`
-  } ${departureAirport && `Departure Airport: ${departureAirport},`} ${
-    timeOfArrival ? `Time of Arrival: timeOfArrival,` : ""
-  } ${timeOfDeparture ? `Time of Departure: timeOfDeparture` : ""}`;
+  const prompt = `Create a travel itinerary for Japan based on the following details:
+    Destination(s): ${destinations.join(", ")},
+    Length of Trip: ${lengthOfTrip} day(s),
+    ${arrivalAirport ? `Arrival Airport: ${arrivalAirport},` : ""}
+    ${departureAirport ? `Departure Airport: ${departureAirport},` : ""}
+    ${timeOfArrival ? `Time of Arrival: ${timeOfArrival},` : ""}
+    ${timeOfDeparture ? `Time of Departure: ${timeOfDeparture}` : ""}`;
 
   try {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI);
