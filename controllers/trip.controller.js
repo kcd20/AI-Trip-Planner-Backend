@@ -44,7 +44,12 @@ export const postCreateTrip = async (req, res) => {
 
   const id = `${Date.now()}-${randomUUID()}`;
 
-  const newTrip = new Trip({ user: user._id, id: id, ...req.body, createdOn: Date.now() });
+  const newTrip = new Trip({
+    user: user._id,
+    id: id,
+    ...req.body,
+    createdOn: Date.now(),
+  });
   const trip = await newTrip.save();
   res.status(200).json(trip);
 };
@@ -56,9 +61,8 @@ export const deletePost = async (req, res) => {
     return res.status(401).json("Not authenticated!");
   }
 
-  const user = await User.findOne({ clerkUserId });
-
-  await Post.findByIdAndDelete({ _id: req.params.id, user: user._id });
+  const trip = await Trip.findOne({ id: req.params.id });
+  await Trip.deleteOne(trip);
 
   res.status(200).json("Post has been deleted");
 };
