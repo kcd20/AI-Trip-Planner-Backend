@@ -9,12 +9,13 @@ import { clerkMiddleware } from "@clerk/express"
 const app = express()
 
 app.use(cors(process.env.CLIENT_URL));
-app.use(clerkMiddleware());
-app.use("/webhooks", webhookRouter);
 
 app.use(express.json());
 
 app.use("/generate", generateRouter)
+
+app.use(clerkMiddleware());
+app.use("/webhooks", webhookRouter);
 
 app.get("/protect", (req, res) => {
     const { userId } = req.auth;
